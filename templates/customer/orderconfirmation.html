@@ -1,0 +1,26 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 p-4 text-center">
+            <h1>Order Submitted!!</h1>
+            <p>Ordering from {{rest_name}}</p>
+            <a href="{{ url_for('customer.dashboard')}}">Go to the dashboard</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-12 text-center">
+            <h3 class="pb-3">Order Summary:</h3>
+            <p> item_name <span class="pl-3">unit_price</span><span class="pl-3">price</span></p>
+            {% for item in items %}
+                <p>{{ item['name'] }} <span class="pl-3">{{ item['unit_price'] }}</span><span class="pl-3">{{ item['price'] }}</span></p>
+            {% endfor %}
+
+            <p class="font-weight-bold pt-4">Total: {{ total_price }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

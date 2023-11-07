@@ -1,0 +1,5 @@
+flask
+flask-mysqldb
+flask-wtf
+pyyaml
+# Login works for all three three according to current table but sing UP page is remaining to build

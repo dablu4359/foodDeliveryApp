@@ -1,0 +1,35 @@
+{% extends 'customer/base.html'%}
+
+{% block content%}
+
+
+<div class="container">
+  <h1 class="text-center mt-5">Result is Here </h1>
+  <div class="shadow-sm card d-flex flex-column bg-white">
+    {% for rest in rests %}
+    <div class="d-flex row rounded shadow-sm  bg-light mb-3">
+      <div class="p-2 flex-fill">
+        <div class="card-body">
+          <h5 class="card-title">Restaurant Name: {{rest['name']}}</h5>
+          <p class="card-text"><i class="bi bi-envelope"></i> Email: {{rest['email']}}</p>
+          <p class="card-text"><i class="bi bi-phone"></i> Phone: {{rest['phone']}}</p>
+          <p class="card-text"><i class="bi bi-phone"></i> Rating: {{rest['rating']}}</p>
+        </div>
+      </div>
+      <div class="p-2 flex-fill">
+        <div class="card-body">
+          <h5 class="card-title">Restaurant Addr </h5>
+          <p class="card-text"><i class="bi bi-envelope"></i> City: {{rest['city']}}</p>
+          <p class="card-text"><i class="bi bi-phone"></i> State: {{rest['state']}}</p>
+          <p class="card-text"><i class="bi bi-phone"></i> Pincode: {{rest['pincode']}}</p>
+        </div>
+      </div>
+      <form method="GET" action="{{ url_for('customer.getmenu')}}" class="mt-5">
+        <div><button class="btn btn-primary" name="restaurant" value="{{rest['ID']}}">Check Menu</button></div>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

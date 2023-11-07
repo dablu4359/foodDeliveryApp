@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", inital-scale=1.0, shrink-to-fit=no>
+    <title>Deliver</title>
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.8/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'restaurant/restnav.html' %}
+    {% block content %}
+    {% endblock content %}
+    
+    <footer class="page-footer font-small indigo">
+        <div class="footer-coyright text-center py-3">&copy; 2023 Copyright@DatabaseGroup
+            <a class="ml-3" href="{{url_for('home')}}"> Home</a>
+            <a class="ml-3" href="{{url_for('restaurant.restmenu')}}"> Menu</a>
+            <a class="ml-3" href="{{url_for('aboutus')}}"> Aboutus</a>
+        </div>
+    </footer>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <script>
+        // Wait for the page to load before running the JavaScript code
+        document.addEventListener("DOMContentLoaded", function () {
+          // Get the flash message element
+          var flashMessage = document.getElementById("flash-message");
+      
+          // If the flash message element exists, display it as a pop-up message
+          if (flashMessage) {
+            // Set the pop-up message to disappear after 10 seconds
+            setTimeout(function () {
+              flashMessage.remove();
+            }, 2500);
+          }
+        });
+      </script>
+</body>
+</html>

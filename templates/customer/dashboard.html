@@ -1,0 +1,47 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %} {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success text-center" role="alert" id="flash-message">
+      <div>{{ message }}</div> 
+  </div>
+  {% endfor %}
+{% endif %} {% endwith %}
+<div class="container  mb-1">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-sm-12 text-center">
+            <h1>What's On Our Menu?</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 text-center">
+            <form method="GET" action="{{ url_for('customer.restlist') }}">
+                <div class="md-form mt-0 active-cyan-2">
+                    <input class="form-control" name="query" type="text" placeholder="Search Restaurants" aria-label="Search" value="">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container ">
+        <div class="row flex-nowrap overflow-auto">
+            {% for type in cuisines %}
+            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 mx-3 bg-light my-3" style="width: 18rem;">
+                <img src="{{'/static/Cuisine_Images/'+type + '.jpg'}}" class="card-img-top object-fit-fill mt-3" alt="cuisine type" style="height:10rem" >
+                <div class="card-body">
+                  <h5 class="card-title">{{type}}</h5>
+                  <form method="GET" action="{{ url_for('customer.restlist')}}">
+                    <div><button class="btn btn-primary" name="cuisine" value="{{type}}">Get Restaurants</button></div>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    
+</div>
+{% endblock content %}

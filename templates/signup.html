@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .card {
+        margin-top: 50px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: #343a40;
+        color: white;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .form-control:focus {
+        border-color: #343a40;
+        box-shadow: none;
+      }
+
+      .btn {
+        background-color: #343a40;
+        border-color: #343a40;
+      }
+
+      .btn:hover {
+        background-color: #ffffff;
+        border-color: #23272b;
+        color:#000000;
+        font-weight: bold;
+      }
+
+      .card-footer {
+        background-color: #f8f9fa;
+        border-radius: 0 0 10px 10px;
+      }
+      .btnsame{
+        background-color: #343a40;
+        color: white;
+        border-radius:3px
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-header text-center">
+              <h4>Sign Up</h4>
+            </div>
+            <div class="card-body">
+              <form>
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btnsame" ><a class="text-light" href="{{ url_for('signupcustomer') }}">Sign Up as Customer</a></button>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btnsame" ><a class="text-light" href="{{ url_for('signuprestaurant') }}">Sign Up as Restaurant</a></button>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btnsame" ><a class="text-light" href="{{ url_for('signupdeliveryagent') }}">Sign Up as Delivery Agent</a></button>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer text-muted text-center">
+              Already have an account? <a href="{{ url_for('login') }}">Log in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

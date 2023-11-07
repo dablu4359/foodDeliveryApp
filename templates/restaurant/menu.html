@@ -1,0 +1,71 @@
+{% extends 'restaurant/base.html'%} {% block content%}
+<style>
+  .table thead {
+    background-color: #4eafc3;
+  }
+
+  .table td {
+    font-size: 14px;
+  }
+</style>
+{% with messages = get_flashed_messages() %} {% if messages %} 
+  {% for message in messages %}
+    <div class="alert alert-success text-center" role="alert" id="flash-message">
+      <div>{{ message }}</div>
+    </div>
+  {% endfor %} 
+  {% endif %}{%endwith%}
+<div class="container mb-5">
+  <form method="GET" action="{{url_for('restaurant.menuedit')}}"">
+  <div class="position-relative">
+    <div class="position-absolute top-50 start-0 translate-middle">
+      <button type="submit" class="btn btn-primary " name="newitem_ID" value="{{rest_ID}}">Add New Menu</button>
+    </div>
+    <div class="container text-center mt-5 pt-3">
+      <h3><span class="fw-600">Restaurant Name:</span> {{rest_name}}</h3>
+    </div>
+  </div>
+  </form>
+</div>
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Veg/Non-veg</th>
+          <th>Availability</th>
+          <th>Item Name</th>
+          <th>Unit Price</th>
+          <th>Type</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>
+            {% if (item['veg_nonveg']) %}
+            <span style="color: green; padding: 0 0.3em">&#9679;&#8414;</span>
+            {% else %}
+            <span style="color: red; padding: 0 0.3em">&#9679;&#8414;</span>
+            {% endif %}
+          </td>
+          <td>{{ item['availability'] }}</td>
+          <td>{{ item['name'] }}</td>
+          <td>{{ item['unit_price'] }}</td>
+          <td>{{ item['type'] }}</td>
+          <td>
+            <form method="GET" action="{{url_for('restaurant.menuedit')}}">
+              <button type="Edit" class="btn" name="item_ID" value="{{item['ID']}}">
+                <i class="fa fa-pencil-square-o fa_custom" name="m"></i> Edit
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

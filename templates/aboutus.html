@@ -1,0 +1,167 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %} {% if messages %} 
+  {% for message in messages %}
+    <div class="alert alert-success text-center" role="alert" id="flash-message">
+      <div>{{ message }}</div>
+    </div>
+  {% endfor %} 
+  {% endif %}{%endwith%}
+
+<style>
+    body {
+        background: url(/static/aboutUsbg.jpg);
+        background-size: cover;
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+    }
+    
+    div1 {
+        display: block;
+        margin-top:50px
+    }
+    .card-header {
+        background-color: #343a40;
+        color: white;
+        border-radius: 10px 10px 0 0;
+    }
+    .btn {
+        background-color: #343a40;
+        border-color: black;
+    }
+    .btn:hover {
+        background-color: #ffffff;
+        border-color: #23272b;
+        color:#000000
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="container mb-5">
+
+
+        <div1 class="jumbotron py-5 bg-light">
+            <div class="container">
+                <h4 class="display-4">
+                    <center>About Us</center>
+                </h4>
+                
+                <p>
+                    <h5>Welcome to our food delivery app! We are a team of passionate individuals who are dedicated to bringing delicious food to your doorstep.
+                        Our app was created with the aim of making it easy and convenient for you to order food from your favorite restaurants.
+                        We understand that in today's fast-paced world, people have very little time to cook and often rely on takeout or delivery options.
+                        Our app bridges the gap between busy lifestyles and quality food by providing a seamless ordering experience.</h5>
+                </p>
+                
+                <p>
+                    <h5>We work with a wide range of restaurants, from local favorites to popular chains, to ensure that there is something for everyone.
+                        Our menus are carefully curated to provide a variety of options, from comfort food to healthy meals, and everything in between.</h5>
+                </p>
+            </div>
+        </div1>
+    
+        
+        <div class="jumbotron bg-light">
+            <div2 class="container">
+                <h1 class="fw-light mb-5">
+                    <center><b>Our Partners and Executives</b></center>
+                </h1>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100" height="150"><rect width="100%" height="100%" fill="#55595c"></rect><text x="100" y="100" font-size="5em" fill="#eceeef">10+</text></svg>
+                            <div class="card-body py-1">
+                                <p class="card-text"><center>Restaurant Partners IITGN</center></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100" height="150"><rect width="100%" height="100%" fill="#55595c"></rect><text x="100" y="100" font-size="5em" fill="#eceeef">20+</text></svg>
+                            <div class="card-body py-1">
+                                <p class="card-text"><center>Employees across the Campus</center></p>
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100" height="150"><rect width="100%" height="100%" fill="#55595c"></rect><text x="100" y="100" font-size="5em" fill="#eceeef">15+</text></svg>
+                        <div class="card-body py-1">
+                            <p class="card-text"><center>Delivery Executives</center></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div2>
+
+
+    </div>
+
+    <div1 class="jumbotron py-5 bg-light">
+        <div class="container">
+            
+
+            <br>
+            <h2 class="text-center mb-3 ">{{tablename}}</h2>
+            <hr>    
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                    <th>{{table['roll_number']}}</th>
+                    <th>{{table['first_name']}}</th>
+                    <th>{{table['last_name']}}</th>
+                    <th>{{table['emailid']}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for student in student_details %}
+                    <tr>
+                    <td>{{student['roll_number']}}</td>
+                    <td>{{student['first_name']}}</td>
+                    <td>{{student['last_name']}}</td>
+                    <td>{{student['emailid']}}</td>
+                    
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <div class="container">
+            <form role="search" method="POST">
+            <div class="row">
+                <div class="co-md-4">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Column to rename</label>
+                        <select class="form-select" id="inputGroupSelect01" name="col_name">
+                            <option>{{table['roll_number']}}</option>
+                            <option>{{table['first_name']}}</option>
+                            <option>{{table['last_name']}}</option>
+                            <option>{{table['emailid']}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control me-2" type="search" placeholder="Column Name" aria-label="Column Name" name="new_name" value="">
+                </div>
+                <div class="col-md-4"><button class="btn btn-outline-primary" type="submit">Rename Column Name</button></div>
+            </div>
+            </form>
+        </div>
+
+    </div1>
+</div>
+</body>
+
+
+{% endblock content %}

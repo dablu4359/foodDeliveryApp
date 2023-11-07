@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  body {
+    background-color: #f2f2f2;
+  }
+
+  .card {
+    margin-top: 100px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    background-color: #343a40;
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .form-control:focus {
+    border-color: #343a40;
+    box-shadow: none;
+  }
+
+  .btn {
+    background-color: #343a40;
+    border-color: #343a40;
+  }
+
+  .btn:hover {
+    background-color: #ffffff;
+    border-color: #23272b;
+    color:#000000
+    font-weight: bold;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    border-radius: 0 0 10px 10px;
+  }
+  .btnsame{
+    background-color: #343a40;
+    color: white;
+    border-radius:3px
+  }
+</style>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<div class="alert alert-danger text-center" role="alert" id="flash-message">
+  <div>{{ message }}</div>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            <legend>Login Details</legend>
+            <div class="mb-3">
+              <input
+                required
+                type="email"
+                name="useremail"
+                placeholder="example@gmail.com"
+                class="form-control"
+                id="useremail"
+                aria-describedby="emailHelp"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                required
+                type="password"
+                name="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter Your Password "
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="authority" class="form-label">User authority</label>
+              <select id="authority" name="authority" class="form-select">
+                <option>Customer</option>
+                <option>Restaurant</option>
+                <option>Delivery Agent</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btnsame" value="signin">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="card-footer text-muted text-center">
+          Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a>
+        </div>
+        <div class="card-footer text-muted text-center">
+          Want to go back? <a href="{{ url_for('home') }}">Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

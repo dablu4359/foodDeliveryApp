@@ -1,0 +1,90 @@
+{% extends 'customer/base.html' %} {% block content %}
+
+<style>
+  body {
+    background-color: back;
+  }
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<div class="container-fluid bg-white">
+  <div class="container-fluid d-flex flex-column p-5 flex-sm-row">
+    <div class="container">
+      {% if not context['email'] %} 
+      <h4 class="fw-bold">Not able to identify the user details</h4>
+      {% endif %}
+      <div class="container"><h4 class="fw-bold">User Name: {{context['first_name'] + ' ' + context['last_name']}}</h4></div>
+      <div class="container">
+        <span> UserPhone number : {{context['phone_no']}} </span> <br>
+        <span> user email: {{context['email']}} </span>
+      </div>
+    </div>
+  </div>
+  <div class="container w-full bg-light pb-3">
+    <div class="text-center p-2"><h4 class="fw-bold">Your Orders</h4></div>
+    {% if not context['order_placed'] %}
+    <div class="d-flex flex-column align-items-center py-3 disebled">
+      <div><p>You orders will be listed here</p></div>
+      <div class="d-flex justify-content-center rounded-circle overflow-hidden" style="width: 150px; height: 150px;">
+        <img src="{{url_for('static', filename='notorder.png')}}" alt="Product Image" class="w-100 h-100">
+      </div>
+      <div class="text-center mt-5 pt-3">
+        <h4>No Order</h4>
+        <p>You have not placed any order yet</p>
+      </div>
+    </div>
+    {% endif %}
+    <div class="shadow-sm card bg-light mb-5">
+      {% for order in orders %}
+      <div class="container mb-2">
+      <div class="row g-0 bg-white border mb-3">
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="d-flex justify-content-center rounded-circle overflow-hidden" style="width: 150px; height: 150px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg" alt="Product Image" class="w-100 h-100">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-flex justify-content-center align-items-start">
+              <div class="col-md-7">
+                <h5 class="card-title">Restaurant: {{order['rest_name']}}</h5>
+                <p class="card-text">Amount: {{order['price']}}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text">Order time: {{order['time']}}</p>
+                <p class="card-text">Order status: {{order['status']}}</p>
+              </div>
+              {% if order['status']=="delivered" %}
+              <form method="POST" action="{{url_for("customer.userprofile")}}">
+                  <div class="col-md-2">
+                <div><button class="btn btn-primary" name="order_ID" value="{{order['ID']}}">Delete</button></div> 
+                </div>  
+              </form>
+              {%else%}
+              <div class="col-md-2">
+                <div><span>In Progress</span></div> 
+              </div>
+              {%endif%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

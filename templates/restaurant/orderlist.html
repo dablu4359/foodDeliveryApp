@@ -1,0 +1,31 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table border table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Opening Time</th>
+          <th scope="col">Address</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for res in restaurants%}
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        {%endfor%}a
+        
+      </tbody>
+  </table>
+</div>
+{% endblock content %}

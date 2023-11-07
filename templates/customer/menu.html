@@ -1,0 +1,74 @@
+{% extends 'customer/base.html'%}
+
+{% block content%}
+<style>
+    .table thead {
+    background-color: #4eafc3;
+    }
+
+    .table td {
+    font-size: 14px;
+    }
+
+</style>
+
+<div class="text-center mt-3 h-full"><h1>{{rest_name}}</h1></div>
+<div class="container">
+  <br>
+        <h2 class="text-center mb-3 ">Menu Items</h2>
+  <hr> 
+<div class="row">
+  <div class="col-md-12 content-center">
+<form action="{{ url_for('customer.orderconfirmation')}}" id="items-table" method="POST">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Unit Price</th>
+        <th>Veg/Non-veg</th>
+        <th>Type</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{% if (item['veg_nonveg']) %}
+          <span style="color:green;padding:0 .3em">&#9679;&#8414;</span>
+          {% else %}
+          <span style="color:red;padding:0 .3em">&#9679;&#8414;</span>
+          {% endif %} 
+        </td>
+        <td>{{ item['name'] }}</td>
+        <td>{{ item['unit_price'] }}</td>
+        <td>{{ item['type'] }}</td>
+        <td>
+          <div class="form">
+            <input type="number" class="form-control" name="{{ item['ID'] }}" value="0" min="0" max="20">
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="d-flex align-items-center mb-3 ">
+    <div class="form-check  ml-5">
+      <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox">
+      <label class="form-check-label" for="agreeCheckbox">
+        is Paid
+      </label>
+    </div>
+    <button action="{{ url_for('customer.orderconfirmation')}}" type="submit" class="btn btn-primary ml-5" disabled>Submit</button>
+  </div>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+  document.getElementById("agreeCheckbox").addEventListener("change", function() {
+    document.querySelector("button[type=submit]").disabled = !this.checked;
+  });
+</script>
+
+{% endblock content %} 
